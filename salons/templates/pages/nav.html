@@ -1,0 +1,58 @@
+{% load static %}{% load user_tags %}
+<header class="navbar navbar-header navbar-header-fixed">
+  <a href="" id="sidebarMenuOpen" class="burger-menu"
+    ><i data-feather="menu"></i
+  ></a>
+  <div class="navbar-brand">
+    <a href="" class="df-logo">Salon<span>Zar</span></a>
+  </div>
+
+  <div class="navbar-right">
+    {% if request.user|has_group:"customer" %}
+    <a href="{% url 'query_page' %}" class="tx-teal"><b>AskExpert</b></a>
+
+    <a href="{% url 'appointments' %}" class="tx-success mg-l-5"
+      ><b>MyAppointments</b></a
+    >
+    <a href="{% url 'cart' %}" class="mg-l-5"
+      ><i data-feather="shopping-cart"></i
+    ></a>
+
+    {% endif %} {% if user.is_authenticated %}
+
+    <div class="dropdown dropdown-profile">
+      <a
+        href=""
+        class="dropdown-link"
+        data-toggle="dropdown"
+        data-display="static"
+      >
+        <div class="avatar avatar-sm avatar-online">
+          <span class="avatar-initial rounded-circle"> </span>
+        </div> </a
+      ><!-- dropdown-link -->
+      <div class="dropdown-menu dropdown-menu-right tx-13">
+        <div class="avatar avatar-lg avatar-online mg-b-15">
+          <span class="avatar-initial rounded-circle"> </span>
+        </div>
+        <h6 class="tx-semibold mg-b-5"></h6>
+        <p class="mg-b-25 tx-12 tx-color-03"></p>
+        {% if request.user|has_group:"salon manager" %}
+        <a href="{% url 'chnage_pass' %}" class="tx-13">change password?</a>
+        {% endif %}
+
+        <div class="dropdown-divider"></div>
+
+        <a href="{% url 'logoutuser' %}" class="dropdown-item"
+          ><i data-feather="log-out"></i>Sign Out</a
+        >
+      </div>
+      <!-- dropdown-menu -->
+    </div>
+    {% endif %}
+
+    <!-- dropdown -->
+  </div>
+  <!-- navbar-right -->
+</header>
+<!-- navbar -->
